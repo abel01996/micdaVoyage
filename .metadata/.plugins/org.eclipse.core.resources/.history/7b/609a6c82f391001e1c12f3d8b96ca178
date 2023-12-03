@@ -1,0 +1,59 @@
+package serviceImplementation;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.List;
+
+import ConfigDatabase.Databases;
+import entite.Trajet;
+import service.ServiceTrajet;
+
+public class TrajetServiceImpl  implements ServiceTrajet{
+	
+	
+	@Override
+	public Trajet saveTrajet(Trajet trajet) {
+		String sql = "INSERT INTO Trajet ( bus, villeDepart, villeArrivee, dateDepart, heureDepart, placesTotales)"
+				+ " VALUES (?, ?, ?, ?, ?, ?)";
+        try (Connection connection = Databases.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+        	preparedStatement.setLong(1, trajet.getBus().getBusId());
+            preparedStatement.setString(2, trajet.getVilleDepart());
+            preparedStatement.setString(3, trajet.getVilleArrivee());
+            preparedStatement.setString(4, trajet.getDateDepart());
+            preparedStatement.setString(5, trajet.getHeureDepart());
+            preparedStatement.setInt(5, trajet.getPlacesTotales());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return trajet;
+	}
+
+	@Override
+	public Trajet getTrajetById(Long trajetId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateTrajet(Trajet trajet) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteTrajet(Long trajetId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Trajet> getAllTrajetes() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+}

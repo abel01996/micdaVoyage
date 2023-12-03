@@ -1,0 +1,12 @@
+package service;
+
+import entite.Bus;
+
+public interface ServiceBus {
+
+    Bus saveBus(Bus bus);
+   Bus getBusById(Long busId);
+   void updateBus(Bus bus);
+
+   void deleteBus(Long busId);
+}

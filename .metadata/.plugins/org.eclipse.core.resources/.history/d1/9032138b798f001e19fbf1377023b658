@@ -1,0 +1,13 @@
+package repository;
+
+import entite.Bus;
+
+public interface BusRepository {
+	
+	    Bus saveBus(Bus bus);
+	    Bus getBusById(Long busId);
+
+	    void updateBus(Bus bus);
+
+	    void deleteBus(Long busId);
+}

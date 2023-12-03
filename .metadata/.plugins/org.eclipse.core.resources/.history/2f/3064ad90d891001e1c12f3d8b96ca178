@@ -1,0 +1,5 @@
+package repository;
+
+public interface TrajetRepository extends CrudRepository<TrajetRepository, Long> {
+
+}

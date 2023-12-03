@@ -1,0 +1,209 @@
+package vue;
+
+//import java.awt.BorderLayout;
+//import java.awt.Color;
+//import java.awt.FlowLayout;
+//import java.awt.Font;
+//import java.awt.GridLayout;
+//import java.awt.event.ActionEvent;
+//import java.awt.event.ActionListener;
+//import java.util.ArrayList;
+//import java.util.List;
+//
+//import javax.swing.BorderFactory;
+//import javax.swing.JButton;
+//import javax.swing.JFrame;
+//import javax.swing.JLabel;
+//import javax.swing.JPanel;
+//import javax.swing.JScrollPane;
+//import javax.swing.JTextArea;
+//import javax.swing.JTextField;
+//import javax.swing.SwingUtilities;
+//import javax.swing.WindowConstants;
+//import javax.swing.border.EmptyBorder;
+//
+//import entite.Bus;
+import javax.swing.*;
+public class ViewBus extends JFrame {
+	
+	public static void main(String args[]){
+		JFrame bus = new JFrame("Ma premiere fenetre");
+		bus.setSize(600,400);
+		bus.setVisible(true);
+		bus.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		 }
+
+//    private JTextField textFieldDescription;
+//    private JTextField textFieldStatus;
+//    private JTextArea textAreaResults;
+//    private JButton buttonFetchBuses;
+//    private JButton buttonAddBus;
+//    private JButton buttonUpdateBus;
+//    private JButton buttonDeleteBus;
+//
+//    private List<Bus> busList = new ArrayList<>();
+//
+//    public ViewBus() {
+//        setTitle("Bus Management System");
+//        setSize(800, 600);
+//        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+//        setLayout(new BorderLayout());
+//
+//        initUI();
+//    }
+//
+//    private void initUI() {
+//        // Panel for adding a bus
+//        JPanel addBusPanel = createAddBusPanel();
+//        addBusPanel.setBorder(BorderFactory.createTitledBorder("Add Bus"));
+//
+//        // Panel for bus operations
+//        JPanel busOperationsPanel = createBusOperationsPanel();
+//        busOperationsPanel.setBorder(BorderFactory.createTitledBorder("Bus Operations"));
+//
+//        // Panel for displaying results
+//        JPanel resultsPanel = createResultsPanel();
+//        resultsPanel.setBorder(BorderFactory.createTitledBorder("Results"));
+//
+//        // Add panels to the main frame
+//        add(addBusPanel, BorderLayout.NORTH);
+//        add(busOperationsPanel, BorderLayout.CENTER);
+//        add(resultsPanel, BorderLayout.SOUTH);
+//    }
+//
+//    private JPanel createAddBusPanel() {
+//        JPanel addBusPanel = new JPanel(new GridLayout(3, 2, 10, 10)); // Espacement entre les composants
+//        textFieldDescription = createStyledTextField();
+//        textFieldStatus = createStyledTextField();
+//        buttonAddBus = new JButton("Add Bus");
+//        buttonAddBus.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                addBus();
+//            }
+//        });
+//
+//        addBusPanel.add(new JLabel("Description:"));
+//        addBusPanel.add(textFieldDescription);
+//        addBusPanel.add(new JLabel("Status:"));
+//        addBusPanel.add(textFieldStatus);
+//        addBusPanel.add(new JPanel()); // Panel vide pour l'espacement
+//        addBusPanel.add(buttonAddBus);
+//
+//        return addBusPanel;
+//    }
+//
+//    private JTextField createStyledTextField() {
+//        JTextField textField = new JTextField(10);
+//        textField.setFont(new Font("Arial", Font.PLAIN, 14));
+//        textField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+//        return textField;
+//    }
+//
+//    private JPanel createBusOperationsPanel() {
+//        JPanel busOperationsPanel = new JPanel(new FlowLayout());
+//        buttonFetchBuses = new JButton("Fetch Buses");
+//        buttonUpdateBus = new JButton("Update Bus");
+//        buttonDeleteBus = new JButton("Delete Bus");
+//
+//        busOperationsPanel.add(buttonFetchBuses);
+//        busOperationsPanel.add(buttonUpdateBus);
+//        busOperationsPanel.add(buttonDeleteBus);
+//
+//        return busOperationsPanel;
+//    }
+//
+//    private JPanel createResultsPanel() {
+//        JPanel resultsPanel = new JPanel(new BorderLayout());
+//        textAreaResults = new JTextArea();
+//        textAreaResults.setEditable(false); // Rend le texte non modifiable
+//        JScrollPane scrollPane = new JScrollPane(textAreaResults);
+//        resultsPanel.add(scrollPane, BorderLayout.CENTER);
+//
+//        return resultsPanel;
+//    }
+//
+//    private void addBus() {
+//        Bus newBus = new Bus();
+//        newBus.setDescription(textFieldDescription.getText());
+//        newBus.setEtat(textFieldStatus.getText());
+//        busList.add(newBus);
+//
+//        textAreaResults.setText("Bus added: " + newBus);
+//    }
+//
+//    private void fetchAndDisplayBuses() {
+//        textAreaResults.setText("Buses:\n");
+//        for (Bus bus : busList) {
+//            textAreaResults.append(bus.toString() + "\n");
+//        }
+//    }
+//
+//    private void updateBus() {
+//        // Implement logic to update a bus
+//        textAreaResults.setText("Bus updated!");
+//    }
+//
+//    private void deleteBus() {
+//        // Implement logic to delete a bus
+//        textAreaResults.setText("Bus deleted!");
+//    }
+//
+//    public static void main(String[] args) {
+//        SwingUtilities.invokeLater(new Runnable() {
+//            @Override
+//            public void run() {
+//                new ViewBus().setVisible(true);
+//            }
+//        });
+//    }
+//}
+//
+//class BusPopup extends JFrame {
+//    private JTextField textFieldBusId;
+//    private JTextField textFieldDescription;
+//    private JTextField textFieldStatus;
+//
+//    public BusPopup() {
+//        setTitle("Add Bus");
+//        setSize(300, 200);
+//        setLayout(new GridLayout(4, 2, 10, 10));
+//
+//        initUI();
+//    }
+//
+//    private void initUI() {
+//        textFieldBusId = createStyledTextField();
+//        textFieldDescription = createStyledTextField();
+//        textFieldStatus = createStyledTextField();
+//        JButton buttonAdd = new JButton("Add");
+//        buttonAdd.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                addBus();
+//            }
+//        });
+//
+//        add(new JLabel("Bus ID:"));
+//        add(textFieldBusId);
+//        add(new JLabel("Description:"));
+//        add(textFieldDescription);
+//        add(new JLabel("Status:"));
+//        add(textFieldStatus);
+//        add(new JPanel()); // Panel vide pour l'espacement
+//        add(buttonAdd);
+//    }
+//
+//    private JTextField createStyledTextField() {
+//        JTextField textField = new JTextField(10);
+//        textField.setFont(new Font("Arial", Font.PLAIN, 14));
+//        textField.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+//        return textField;
+//    }
+//
+//    private void addBus() {
+//        // Implement logic to add a bus from the pop-up
+//        // You can add the bus to the busList or perform database operations
+//        setVisible(false);
+//    }
+}

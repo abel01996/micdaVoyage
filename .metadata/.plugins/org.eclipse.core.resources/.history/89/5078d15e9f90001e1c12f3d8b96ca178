@@ -1,0 +1,273 @@
+//package vue;
+//
+//import javax.swing.*;
+//import javax.swing.border.*;
+//import javax.swing.table.DefaultTableModel;
+//
+//import java.awt.*;
+//import java.util.List;
+//
+//public class ViewBus extends JFrame {
+//  private JTextField textNom; 
+//  private JTextField textDescription; 
+//  private JTextField textStatus;
+//
+//  private JTable tableBuses;
+//  private DefaultTableModel tableModel;
+//  private List<Bus> busList;
+//
+//  public ViewBus() {
+//
+//    setTitle("Gestion des bus");
+//    setSize(800, 600);
+//    setDefaultCloseOperation(EXIT_ON_CLOSE);
+//    setLayout(new BorderLayout());
+//
+//    // Formulaire
+//    JPanel addPanel = createAddPanel(); 
+//    add(addPanel, BorderLayout.NORTH);
+//
+//    // Tableau 
+//    String[] headers = {"Nom", "Description", "Statut"};
+//    tableModel = new DefaultTableModel(headers, 0);
+//    tableBuses = new JTable(tableModel);
+//
+//    add(new JScrollPane(tableBuses), BorderLayout.CENTER);
+//    
+//    fetchAndDisplayBuses();
+//
+//  }
+//
+//  private JPanel createAddPanel() {
+//    
+//    JPanel panel = new JPanel();
+//    panel.setBorder(new TitledBorder("Ajouter un bus"));
+//    
+//    JPanel row1 = new JPanel();
+//    row1.add(new JLabel("Nom : "));
+//    textNom = new JTextField(50); 
+//    row1.add(textNom);
+//    
+//    JPanel row2 = new JPanel();
+//    row2.add(new JLabel("Description : "));
+//    textDescription = new JTextField(46); 
+//    row2.add(textDescription);
+//
+//    JPanel row3 = new JPanel();
+//    row3.add(new JLabel("Statut : "));
+//    textStatus = new JTextField(50);
+//    row3.add(textStatus);
+//    
+//    JButton btnAdd = new JButton("Ajouter");
+//        
+//    panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS)); 
+//    panel.add(row1);
+//
+//    panel.add(Box.createVerticalStrut(10));
+//    panel.add(row2);
+//    
+//    panel.add(Box.createVerticalStrut(10));
+//    panel.add(row3);
+//    
+//    panel.add(Box.createVerticalStrut(20)); 
+//    panel.add(btnAdd);
+//        
+//    panel.setBorder(new EmptyBorder(10, 10, 10, 10));    
+//    panel.setAlignmentX(CENTER_ALIGNMENT);
+//
+//    return panel;
+//  }
+//
+//  private void fetchAndDisplayBuses() {
+//
+//  }
+//
+//  public static void main(String[] args) {
+//    new ViewBus().setVisible(true);
+//  }
+//
+//}
+//
+//class Bus {
+//
+//  private int id;
+//  private String nom;
+//  private String description;
+//  private String etat;
+//
+//  // accesseurs  
+//}
+import javax.swing.*;
+import javax.swing.border.*;
+import javax.swing.table.DefaultTableModel;
+
+import ConfigDatabase.Databases;
+import service.ServiceBus;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.List;
+
+public class ViewBus extends JFrame {
+    private JTextField textNom;
+    private JTextField textDescription;
+    private JTextField textStatus;
+
+    private JTable tableBuses;
+    private DefaultTableModel tableModel;
+    private List<entite.Bus> busList;
+
+    private BusServiceImpl busService = new BusServiceImpl(); // Ajout de l'instance BusServiceImpl
+
+    public ViewBus() {
+        setTitle("Gestion des bus");
+        setSize(800, 600);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
+
+        // Formulaire
+        JPanel addPanel = createAddPanel();
+        add(addPanel, BorderLayout.NORTH);
+
+        // Tableau
+        String[] headers = {"Nom", "Description", "Statut"};
+        tableModel = new DefaultTableModel(headers, 0);
+        tableBuses = new JTable(tableModel);
+
+        add(new JScrollPane(tableBuses), BorderLayout.CENTER);
+
+        fetchAndDisplayBuses();
+    }
+
+    private JPanel createAddPanel() {
+        JPanel panel = new JPanel();
+        panel.setBorder(new TitledBorder("Ajouter un bus"));
+
+        JPanel row1 = new JPanel();
+        row1.add(new JLabel("Nom : "));
+        textNom = new JTextField(50);
+        row1.add(textNom);
+
+        JPanel row2 = new JPanel();
+        row2.add(new JLabel("Description : "));
+        textDescription = new JTextField(46);
+        row2.add(textDescription);
+
+        JPanel row3 = new JPanel();
+        row3.add(new JLabel("Statut : "));
+        textStatus = new JTextField(50);
+        row3.add(textStatus);
+
+        JButton btnAdd = new JButton("Ajouter");
+        btnAdd.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addBus();
+            }
+
+			private void addBus() {
+				// TODO Auto-generated method stub
+				
+			}
+        });
+
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.add(row1);
+
+        panel.add(Box.createVerticalStrut(10));
+        panel.add(row2);
+
+        panel.add(Box.createVerticalStrut(10));
+        panel.add(row3);
+
+        panel.add(Box.createVerticalStrut(20));
+        panel.add(btnAdd);
+
+        panel.setBorder(new EmptyBorder(10, 10, 10, 10));
+        panel.setAlignmentX(CENTER_ALIGNMENT);
+
+        return panel;
+    }
+
+    private void fetchAndDisplayBuses() {
+        // Récupérer la liste des bus depuis la base de données
+        busList = Databases.selectAllBuses();
+
+        // Effacer le modèle de tableau
+        tableModel.setRowCount(0);
+
+        // Remplir le modèle de tableau avec les nouveaux bus
+        for (entite.Bus bus : busList) {
+            Object[] row = {bus.getNom(), bus.getDescription(), bus.getEtat()};
+            tableModel.addRow(row);
+        }
+    }
+
+    public static void main(String[] args) {
+        new ViewBus().setVisible(true);
+    }
+}
+
+class Bus {
+    private int id;
+    private String nom;
+    private String description;
+    private String etat;
+	public String getDescription() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public Object getNom() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public String getEtat() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+    // accesseurs
+}
+
+class BusServiceImpl implements ServiceBus {
+    public Bus saveBus(Bus bus) {
+        String sql = "INSERT INTO Bus (description, etat) VALUES (?, ?)";
+        try (Connection connection = Databases.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, bus.getDescription());
+            preparedStatement.setString(2, bus.getEtat());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return bus;
+    }
+
+    public entite.Bus getBusById(Long busId) {
+        // ...
+    }
+
+    public void updateBus(Bus bus) {
+        // ...
+    }
+
+    public void deleteBus(Long busId) {
+        // ...
+    }
+
+	@Override
+	public entite.Bus saveBus(entite.Bus bus) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateBus(entite.Bus bus) {
+		// TODO Auto-generated method stub
+		
+	}
+}

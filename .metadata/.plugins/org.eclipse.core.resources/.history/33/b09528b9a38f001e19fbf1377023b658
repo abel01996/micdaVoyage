@@ -1,0 +1,36 @@
+package entite;
+
+public class Paiement {
+	
+	private String codePaiement;
+    private String methodePaiement;
+    
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("hello paiement");
+
+	}
+	 // Constructeurs, getters et setters
+
+    public Paiement(String codePaiement, String methodePaiement) {
+        this.codePaiement = codePaiement;
+        this.methodePaiement = methodePaiement;
+    }
+
+    public String getCodePaiement() {
+        return codePaiement;
+    }
+
+    public void setCodePaiement(String codePaiement) {
+        this.codePaiement = codePaiement;
+    }
+
+    public String getMethodePaiement() {
+        return methodePaiement;
+    }
+
+    public void setMethodePaiement(String methodePaiement) {
+        this.methodePaiement = methodePaiement;
+    }
+
+}

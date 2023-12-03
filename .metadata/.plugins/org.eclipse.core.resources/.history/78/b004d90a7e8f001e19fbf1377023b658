@@ -1,0 +1,44 @@
+package entite;
+
+
+	public class Bus {
+	    private Long busId; 
+	    private String description; 
+	    private String etat;  
+
+	    // Constructeurs, getters et setters
+	    public static void main(String[] args) {
+	    System.out.println("hello bus");
+	    }
+
+	    public Bus(Long busId, String description, String etat) {
+	        this.busId = busId;
+	        this.description = description;
+	        this.etat = etat;
+	    }
+
+	    public Long getBusId() {
+	        return busId;
+	    }
+
+	    public void setBusId(Long busId) {
+	        this.busId = busId;
+	    }
+
+	    public String getDescription() {
+	        return description;
+	    }
+
+	    public void setDescription(String description) {
+	        this.description = description;
+	    }
+
+	    public String getEtat() {
+	        return etat;
+	    }
+
+	    public void setEtat(String etat) {
+	        this.etat = etat;
+	    }
+	  
+}

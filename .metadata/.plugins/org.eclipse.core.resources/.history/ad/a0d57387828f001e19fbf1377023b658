@@ -1,0 +1,86 @@
+package entite;
+
+public class Trajet {
+
+	private Long trajetId;
+    private Bus bus;
+    private String villeDepart;
+    private String villeArrivee;
+    private String dateDepart;
+    private String heureDepart;
+    private int placesTotales;
+    
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("hello trajet");
+
+	}
+	
+public Trajet(Long trajetId, Bus bus, String villeDepart, String villeArrivee,
+            String dateDepart, String heureDepart, int placesTotales) {
+	
+  this.trajetId = trajetId;
+  this.bus = bus;
+  this.villeDepart = villeDepart;
+  this.villeArrivee = villeArrivee;
+  this.dateDepart = dateDepart;
+  this.heureDepart = heureDepart;
+  this.placesTotales = placesTotales;
+}
+
+public Long getTrajetId() {
+  return trajetId;
+}
+
+public void setTrajetId(Long trajetId) {
+  this.trajetId = trajetId;
+}
+
+public Bus getBus() {
+  return bus;
+}
+
+public void setBus(Bus bus) {
+  this.bus = bus;
+}
+
+public String getVilleDepart() {
+  return villeDepart;
+}
+
+public void setVilleDepart(String villeDepart) {
+  this.villeDepart = villeDepart;
+}
+
+public String getVilleArrivee() {
+  return villeArrivee;
+}
+
+public void setVilleArrivee(String villeArrivee) {
+  this.villeArrivee = villeArrivee;
+}
+
+public String getDateDepart() {
+  return dateDepart;
+}
+
+public void setDateDepart(String dateDepart) {
+  this.dateDepart = dateDepart;
+}
+
+public String getHeureDepart() {
+  return heureDepart;
+}
+
+public void setHeureDepart(String heureDepart) {
+  this.heureDepart = heureDepart;
+}
+
+public int getPlacesTotales() {
+  return placesTotales;
+}
+
+public void setPlacesTotales(int placesTotales) {
+  this.placesTotales = placesTotales;
+}
+}
